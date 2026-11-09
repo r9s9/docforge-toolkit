@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "docforge-live"
+version = "1.0.0"
+description = "DocForge's Word template engine and the command line the DocForge.live plugin for Claude runs."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "DocForge.live", email = "support@docforge.live" }]
+keywords = ["word", "docx", "templates", "document-automation", "compliance", "claude"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Text Processing :: Markup :: XML",
+]
+# The minimums match REQUIRED in src/docforge/toolkit/deps.py; a test keeps
+# the two in step.
+dependencies = [
+    "python-docx>=1.1,<2",
+    "docxtpl>=0.17,<1",
+    "lxml>=5.1,<7",
+    "Jinja2>=3.1,<4",
+    "pydantic>=2.6,<3",
+    "python-dateutil>=2.8,<3",
+]
+
+[project.scripts]
+docforge-live = "docforge.toolkit.cli:main"
+
+[project.urls]
+Homepage = "https://www.docforge.live"
+Source = "https://github.com/r9s9/docforge-toolkit"
+Plugin = "https://github.com/r9s9/docforge-claude-plugin"
+Issues = "https://github.com/r9s9/docforge-toolkit/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/docforge"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "tools", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+# Same rules as the DocForge backend (backend/pyproject.toml).
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "W"]
+ignore = ["E501", "UP042"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["docforge"]

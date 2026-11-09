@@ -1,0 +1,14 @@
+# Local development
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Scratch output from trying the CLI
+/demo/
+/work/
+/templates/
