@@ -56,6 +56,10 @@ writes along the way (`decisions.json`, values files, verdicts).
 - `tools/run_upstream_tests.py`: runs DocForge's own engine tests against
   this copy.
 - `tests/`: the package's tests.
+- `plugin_checks/`: checks for the DocForge.live plugin, which can't hold
+  code itself. The plugin's CI runs them against the plugin repository; they
+  also set the toolkit up by following the skill's own instructions and run
+  the workflows with the pinned version from PyPI.
 
 ## Development
 

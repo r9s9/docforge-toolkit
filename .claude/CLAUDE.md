@@ -15,4 +15,7 @@ runs. The plugin pins an exact version of this package.
   tagged `vX.Y.Z` that matches `version` in `pyproject.toml`; the publish
   workflow waits for the owner's approval.
 - Raise the plugin's pin only after the new version is on PyPI.
+- `plugin_checks/` holds the plugin's checks; the plugin's CI runs them
+  against the plugin repository. A change here can fail the plugin's CI, so
+  run them with `--plugin` pointing at a copy of the plugin.
 - Before pushing, run the checks in `.github/workflows/ci.yml`.
